@@ -12,6 +12,10 @@ export const SecondaryText = styled.Text`
   text-decoration: underline;
 `;
 
+export const ButtonText = styled.Text`
+  font-size: 16px;
+  color: #000000;
+`;
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: #BCFAFF;

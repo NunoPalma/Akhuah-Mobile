@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Container, LoadingWheel } from '../../../core_styles';
-import { StyleSheet, Text, Image } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import { StyleSheet, Text, Image, AsyncStorage } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default () => {
