@@ -1,5 +1,5 @@
-import React from 'react';
-import {KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image} from 'react-native';
+import React, {useState} from 'react';
+import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import LottieView from 'lottie-react-native';
 import {PrimaryText, SecondaryText} from '../../../core_styles';
 
@@ -9,7 +9,12 @@ import EmailIcon from '../../../assets/email_black_24dp.svg';
 import LockIcon from '../../../assets/lock_black_24dp.svg';
 import Button from "../../components/Button";
 
+import ApiService from "../../services/ApiService";
+
 export default () => {
+
+    const [emailField, setEmailChange] = useState('');
+    const [passwordField, setPasswordChange] = useState('');
 
     React.useEffect(() => {
         this.animation.play();
@@ -19,6 +24,18 @@ export default () => {
         this.animation.reset();
         this.animation.play();
     };
+
+    const handleOnLoginClick = async () => {
+        if (emailField !== '' && passwordField !== '') {
+            let json = await ApiService.authenticate(emailField, passwordField);
+            if (json['access_token']) {
+                alert('nice');
+            } else
+                alert("Invalid credentials.")
+        } else {
+            alert("Invalid credentials.")
+        }
+    }
 
     return (
         <KeyboardAvoidingView style={styles.background}>
@@ -42,15 +59,19 @@ export default () => {
                     IconSvg={EmailIcon}
                     placeholder="Email"
                     hideText={false}
+                    value={emailField}
+                    onChangeText={text => setEmailChange(text)}
                 />
 
                 <TextInputField
                     IconSvg={LockIcon}
                     placeholder="Password"
                     hideText={true}
+                    value={passwordField}
+                    onChangeText={text => setPasswordChange(text)}
                 />
 
-                <Button />
+                <Button onButtonClick={handleOnLoginClick}/>
 
                 <SecondaryText style={styles.registerText}>Register a new account</SecondaryText>
             </View>
@@ -82,7 +103,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
-        paddingBottom: 100
+        paddingBottom: 100,
     },
     registerText: {
         marginTop: 20

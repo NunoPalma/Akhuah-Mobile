@@ -1,34 +1,29 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import {ButtonText} from "../../core_styles";
+import {StyleSheet, TouchableOpacity} from "react-native";
 
-const MainButton = styled.TouchableOpacity`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #498bc4;
-    border-radius: 30px;
-    height: 50px;
-`;
 
-const InputArea = styled.View`
-    flex: 1;
-    width: 90%;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 15px;
-`;
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: '#498bc4',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30,
+        height: 45,
+        width: '90%'
+    }
+});
 
-export default () => {
+export default ({onButtonClick}) => {
     return (
-        <InputArea>
-            <MainButton>
-                <ButtonText>
-                    Login
-                </ButtonText>
-            </MainButton>
-        </InputArea>
+        <TouchableOpacity
+            style={ styles.button }
+            onPress={function () {
+                onButtonClick()
+            }}>
+            <ButtonText>
+                Login
+            </ButtonText>
+        </TouchableOpacity>
     );
 }

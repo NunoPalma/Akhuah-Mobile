@@ -31,7 +31,8 @@
     "styled-components": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "axios": "^0.21.1"
   },
   "private": true
 }
