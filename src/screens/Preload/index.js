@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {Container} from '../../../core_styles';
-import {AsyncStorage, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import LottieView from "lottie-react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default () => {
 
@@ -10,19 +10,21 @@ export default () => {
 
     useEffect(() => {
         const verifyAuthentication = async () => {
-            const authenticationToken = await AsyncStorage.getItem('authentication_token');
+            const authenticationToken = await AsyncStorage.getItem('access_token');
 
-            if (authenticationToken == null) {
-                console.log("token exists");
-                // validate token
+            if (authenticationToken != null) {
+                console.log("token exists"); //TODO validate token
+
+                setTimeout(() => {
+                    navigation.reset({
+                        routes: [{name: 'MainView'}]
+                    });                }, 3000);
             } else {
-                console.log("sign in");
-
                 navigation.navigate('SignIn');
             }
         }
 
-        verifyAuthentication();
+        verifyAuthentication()
     });
 
     return (

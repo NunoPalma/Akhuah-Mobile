@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ({onButtonClick}) => {
+export default ({onButtonClick, buttonText}) => {
     return (
         <TouchableOpacity
             style={ styles.button }
@@ -22,7 +22,7 @@ export default ({onButtonClick}) => {
                 onButtonClick()
             }}>
             <ButtonText>
-                Login
+                {buttonText}
             </ButtonText>
         </TouchableOpacity>
     );

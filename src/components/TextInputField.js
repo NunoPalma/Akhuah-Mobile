@@ -28,6 +28,8 @@ export default ({IconSvg, placeholder, hideText, value, onChangeText}) => {
                 secureTextEntry={hideText}
                 value={value}
                 onChangeText={onChangeText}
+                errorStyle={{color: 'red'}}
+                errorMessage='TEST TEST TEST TEST'
             />
         </InputArea>
     );

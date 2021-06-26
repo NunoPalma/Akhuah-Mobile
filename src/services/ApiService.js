@@ -3,7 +3,23 @@ import axios from 'axios';
 const BASE_API = 'http://10.0.2.2:8080';
 
 export default {
-    register: async () => {
+    register: async (email, password, username) => {
+        let data = {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                username: username
+            }),
+            headers: {
+                'Accept':       'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const request = await fetch(`${BASE_API}/register`, data);
+
+        return await request.json();
 
     },
 
@@ -11,7 +27,7 @@ export default {
         let data = {
             method: 'POST',
             body: JSON.stringify({
-                username: email,
+                email: email,
                 password: password
             }),
             headers: {

@@ -7,17 +7,19 @@ import TextInputField from "../../components/TextInputField";
 
 import EmailIcon from '../../../assets/email_black_24dp.svg';
 import LockIcon from '../../../assets/lock_black_24dp.svg';
+import PersonIcon from '../../../assets/person_outline_black_24dp.svg';
 import Button from "../../components/Button";
 
 import ApiService from "../../services/ApiService";
 import {useNavigation} from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default () => {
 
     const [emailField, setEmailChange] = useState('');
     const [passwordField, setPasswordChange] = useState('');
+    const [nameField, setNameChange] = useState('');
     const navigation = useNavigation();
+
 
     React.useEffect(() => {
         this.animation.play();
@@ -28,19 +30,12 @@ export default () => {
         this.animation.play();
     };
 
-    const handleOnLoginClick = async () => {
-        if (emailField !== '' && passwordField !== '') {
-            let json = await ApiService.authenticate(emailField, passwordField);
-            if (json['access_token']) {
-                await AsyncStorage.setItem('access_token', json['access_token'])
-
-                navigation.reset({
-                    routes: [{name: 'MainView'}]
-                });
-            } else
-                alert("Invalid credentials.")
+    const handleOnRegisterClick = async () => {
+        if (emailField !== '' && passwordField !== '' && nameField !== '') {
+            let json = await ApiService.register(emailField, passwordField, nameField);
+            console.log(json)
         } else {
-            alert("Invalid credentials.")
+            alert("Failed to register.")
         }
     }
 
@@ -78,17 +73,23 @@ export default () => {
                     onChangeText={text => setPasswordChange(text)}
                 />
 
+                <TextInputField
+                    IconSvg={PersonIcon}
+                    placeholder="Name"
+                    hideText={false}
+                    value={nameField}
+                    onChangeText={text => setNameChange(text)}
+                />
+
                 <Button
-                    onButtonClick={handleOnLoginClick}
-                    buttonText="Login"
+                    onButtonClick={handleOnRegisterClick}
+                    buttonText="Register"
                 />
 
                 <SecondaryText
-                    onPress={() => {
-                        navigation.navigate('SignUp')
-                    }}
+                    onPress={() => {navigation.navigate('SignIn')}}
                     style={styles.registerText}>
-                    Register a new account
+                    Already have an account? Log in.
                 </SecondaryText>
             </View>
         </KeyboardAvoidingView>

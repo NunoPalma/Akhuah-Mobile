@@ -20,9 +20,11 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.android.akhuhah",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FFFFFF",
       }
     },
     "web": {
