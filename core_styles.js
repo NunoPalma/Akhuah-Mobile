@@ -6,6 +6,16 @@ export const PrimaryText = styled.Text`
   color: #000000;
 `;
 
+export const PrimaryPostText = styled.Text`
+    font-size: 22px;
+    color: #000000;
+`;
+
+export const DescriptionPostText = styled.Text`
+    font-size: 16px;
+    color: #87847b;
+`;
+
 export const SecondaryText = styled.Text`
   font-size: 16px;
   color: #a1bbff;
