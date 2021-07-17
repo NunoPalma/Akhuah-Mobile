@@ -30,7 +30,6 @@ export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: #BCFAFF;
   justify-content: center;
-  align-items: center;
 `;
 
 export const LoadingWheel = styled.ActivityIndicator``;

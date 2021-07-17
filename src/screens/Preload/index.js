@@ -18,7 +18,8 @@ export default () => {
                 setTimeout(() => {
                     navigation.reset({
                         routes: [{name: 'MainView'}]
-                    });                }, 3000);
+                    });
+                }, 3000);
             } else {
                 navigation.navigate('SignIn');
             }
@@ -28,7 +29,9 @@ export default () => {
     });
 
     return (
-        <Container>
+        <Container style={{
+            alignItems: 'center'
+        }}>
             <LottieView
                 autoPlay={true}
                 autoSize={true}

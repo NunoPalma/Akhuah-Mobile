@@ -30,9 +30,18 @@ export default () => {
 
     const handleOnLoginClick = async () => {
         if (emailField !== '' && passwordField !== '') {
+            console.log('getting auth')
+
             let json = await ApiService.authenticate(emailField, passwordField);
             if (json['access_token']) {
                 await AsyncStorage.setItem('access_token', json['access_token'])
+
+                console.log('got json')
+
+                let userDataJson = await ApiService.getUserData()
+
+                console.log(userDataJson['profileImage'])
+                await AsyncStorage.setItem('user_data', JSON.stringify(userDataJson))
 
                 navigation.reset({
                     routes: [{name: 'MainView'}]
